@@ -38,12 +38,27 @@ function MainScreen() {
         <View style={styles.InputFlex}> 
          <Text style={styles.label}>Enter Name:</Text>
          <TextInput placeholder="Jane" 
-         onChangeText={newText => setName(newText)}/>
+         value = {Name}
+         autoCapitalize="characters"
+         onChangeText={newText =>{
+          const cleaned = newText.replace(/[^a-zA-Z]/g, '');
+            const capitalized = cleaned.replace(/\b\w/g, (char) => char.toUpperCase());
+          setName(capitalized);
+         }}
+         />
 
          
          <Text style={styles.label}>Enter Surname:</Text>
-         <TextInput placeholder="Doe" 
-         onChangeText={(newText) => setSurname(newText)}/>
+         <TextInput placeholder="Doe"
+         value = {Surname} 
+         autoCapitalize = "characters"
+         onChangeText={newText => {
+            const cleaned = newText.replace(/[^a-zA-Z]/g, '');
+            const capitalized = cleaned.replace(/\b\w/g, (char) => char.toUpperCase());
+          setSurname(capitalized);
+         }}
+         />
+
         </View>
 
 
@@ -54,6 +69,7 @@ function MainScreen() {
 
       <StatusBar style="auto" />
 
+    
     </View>
   );
 }
